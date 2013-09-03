@@ -48,7 +48,7 @@
               <div style="margin-left: 15px;">
                 <div infinite-scroll='bricks.nextPage()' infinite-scroll-disabled='bricks.busy' infinite-scroll-distance='1'>
                   <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
-                      <div class="masonry-brick" ng-repeat="brick in bricks.items">
+                      <div class="masonry-brick" style="border: 1px solid black; padding:2px;margin-bottom: 10px;" ng-repeat="brick in bricks.items">
                           <img ng-src="{{ brick }}" alt="A masonry brick">
                           <h1 style="font-size: 15px;">Lorem Ipsum event on facebook</h1>
                           <p>Aug 23, 2013</p>
@@ -92,6 +92,7 @@
         <script>
             angular.module('masonryApp', ['wu.masonry','infinite-scroll']).
                 controller('DemoCtrl', function ($scope,Reddit) {
+
                   $scope.bricks  = new Reddit();
                     function genBrick() {
                         return {
@@ -109,7 +110,17 @@
                 })
                 .factory('Reddit', function($http) {
                   var Reddit = function() {
-                    this.items = [];
+                    this.items = [
+                
+                    'http://lorempixel.com/350/200/sports/1',
+                    'http://lorempixel.com/350/200/sports/2',
+                    'http://lorempixel.com/350/200/sports/3/',
+                    'http://lorempixel.com/320/200/sports/7/',
+                    'http://lorempixel.com/460/350/food/2/',
+                    'http://lorempixel.com/320/400/food/2/',
+                    'http://lorempixel.com/320/200/food/4/',
+
+                    ];
                     this.busy = false;
                     this.after = '';
                   };
@@ -130,7 +141,7 @@
                       for (var i = 0; i < 10; i++) {
 
                         //this.items.push(items[i].data);
-                        this.items.push('http://lorempixel.com/275/'+ getRandomInt(20,40) +'0/?5142');
+                        this.items.push('http://lorempixel.com/320/'+ getRandomInt(20,50) +'0/?5142');
                       }
                       //this.after = "t3_" + this.items[this.items.length - 1].id;
                       this.busy = false;
