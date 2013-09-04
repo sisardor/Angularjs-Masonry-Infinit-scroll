@@ -12,7 +12,8 @@
             .masonry-brick {
                 margin: 2px;
                 display: none;
-                
+                border: 1px solid black; padding:2px;margin-bottom: 10px;
+                width: 250px;
             }
 
             .masonry-brick.loaded {
@@ -48,7 +49,7 @@
               <div style="margin-left: 15px;">
                 <div infinite-scroll='bricks.nextPage()' infinite-scroll-disabled='bricks.busy' infinite-scroll-distance='1'>
                   <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
-                      <div class="masonry-brick" style="border: 1px solid black; padding:2px;margin-bottom: 10px;" ng-repeat="brick in bricks.items">
+                      <div class="masonry-brick"  ng-repeat="brick in bricks.items">
                           <img ng-src="{{ brick }}" alt="A masonry brick">
                           <h1 style="font-size: 15px;">Lorem Ipsum event on facebook</h1>
                           <p>Aug 23, 2013</p>
