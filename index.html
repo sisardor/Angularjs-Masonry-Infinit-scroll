@@ -11,6 +11,22 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <style>
+
+            .masonry-brick {
+                margin: 2px;
+                display: none;
+                border: 1px solid black; padding:2px;margin-bottom: 10px;
+                width: 300px;
+            }
+
+            .masonry-brick.loaded {
+                display: block;
+            }
+            #gutter-opt-demo2 .item {
+              margin-bottom: 10px;
+            }
+        </style>
   </head>
   <body>
     <div class="wrapper">
@@ -28,37 +44,40 @@
         </ul>
       </header>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+    <h1>What is Masonry?</h1>
+    <p class="lead">
+Masonry is a JavaScript grid layout library. It works by placing elements in optimal position based on available vertical space, sort of like a mason fitting stones in a wall. You’ve probably seen it in use all over the Internet. <a href="http://masonry.desandro.com/">http://masonry.desandro.com/</a> <br>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+And this is an AngularJS directive for Masonry [<a href="https://github.com/passy/angular-masonry">original github project</a>] </p>
+</header>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span10" ng-app="masonryApp" ng-controller="DemoCtrl">
+            <h1>angular-masonry</h1>
+            <hr>
+              <div style="margin-left: 15px;">
+                <div infinite-scroll='bricks.nextPage()' infinite-scroll-disabled='bricks.busy' infinite-scroll-distance='1'>
+                  <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
+                      <div class="masonry-brick"  ng-repeat="brick in bricks.items">
+                          <img ng-src="{{ brick.src }}" alt="A masonry brick">
+                          <h1 style="font-size: 15px;">{{ brick.title }}</h1>
+                          <p>Aug 23, 2013</p>
+                          <p>Burnaby, BC</p>
+                      </div>
+                  </div>
+                </div>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+                 <!--  <masonry item-selector=".mybrick" column-width="200">
+                    <div masonry-brick class="mybrick" style="border: 1px sold black">
+                      <img src="http://lorempixel.com/400/200/sports/"></div>
+                    <div masonry-brick class="mybrick" style="border: 1px sold black">
+                      <img src="http://lorempixel.com/300/200/sports/"></div>
+                </masonry> -->
+              </div>
+          </div>
+        </div>
+      </div>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/sisardor">sisardor</a></p>
@@ -66,6 +85,94 @@ $ git checkout gh-pages
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
+    <script src="http://passy.github.io/angular-masonry/bower_components/jquery/jquery.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/jquery-bridget/jquery.bridget.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/get-style-property/get-style-property.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/get-size/get-size.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/eventEmitter/EventEmitter.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/eventie/eventie.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/doc-ready/doc-ready.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/matches-selector/matches-selector.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/item.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/outlayer.js"></script>
+          <script src="http://passy.github.io/angular-masonry/bower_components/masonry/masonry.js"></script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script src="angular-masonry.js"></script>
+        <script src="infinit-scroll.js"></script>
+        <script src="imagesloaded.js"></script>
+        <script>
+            angular.module('masonryApp', ['wu.masonry','infinite-scroll']).
+                controller('DemoCtrl', function ($scope,Reddit) {
+
+                  $scope.bricks  = new Reddit();
+                    function genBrick() {
+                        return {
+                            src: 'http://lorempixel.com/g/400/200/?' + ~~(Math.random() * 10000)
+                        };
+                    };
+
+
+                    $scope.remove = function remove() {
+                        $scope.bricks.splice(
+                            ~~(Math.random() * $scope.bricks.length),
+                            1
+                        )
+                    };
+                    console.log($scope.bricks);
+                })
+                .factory('Reddit', function($http) {
+                  var Reddit = function() {
+                    this.items = [
+                  
+                    {'src':'http://lorempixel.com/350/200/sports/1', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/350/200/sports/2', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/350/200/sports/3/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/320/200/sports/7/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/460/350/food/2/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/320/400/food/2/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/320/200/food/4/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/450/400/food/2/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/500/350/sports/5/', 'title':'Lorem Ipsum and shit'},
+
+                    ];
+                    this.busy = false;
+                    
+                    this.after = '';
+                  };
+
+                  Reddit.prototype.nextPage = function() {
+                    if (this.busy) return;
+                    function getRandomInt(min, max) {
+                      return Math.floor(Math.random() * (max - min + 1) + min);
+                    }
+                    this.busy = true;
+                    
+                    var url = "http://api.reddit.com/hot?after=" + this.after + "&jsonp=JSON_CALLBACK";
+                    $http.jsonp(url).success(function(data) {
+                      
+                      // console.log("page " + ii);
+                         
+                       //var width=300;
+                       var items = data.data.children;
+                       
+                       for (var i = 0; i < items.length - 20; i++) {
+
+                         this.items.push({'src':'http://lorempixel.com/320/'+ getRandomInt(20,50) +'0/?5142','title':'"' + items[i].data.title +'"'});
+                       };
+    
+
+                      this.busy = false;
+
+    
+                      
+
+                    }.bind(this));
+                  };
+
+                  return Reddit;
+                });
+        </script>
     
   </body>
 </html>

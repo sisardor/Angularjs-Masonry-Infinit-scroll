@@ -46,7 +46,7 @@ a small {
 }
 
 .wrapper {
-  width:860px;
+  width:100%;
   margin:0 auto;
 }
 
@@ -160,8 +160,10 @@ header ul a strong {
 }
 
 section {
-  width:500px;
-  float:right;
+  width:80%;
+  margin-left: 300px;
+
+  /*float:left;*/
   padding-bottom:50px;
 }
 
