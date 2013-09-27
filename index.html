@@ -13,7 +13,7 @@
                 margin: 2px;
                 display: none;
                 border: 1px solid black; padding:2px;margin-bottom: 10px;
-                width: 250px;
+                width: 300px;
             }
 
             .masonry-brick.loaded {
@@ -27,8 +27,11 @@
     <body class="" ng-app="masonryApp">
 <header class="jumbotron subhead" id="overview">
   <div class="container">
-    <h1>Components</h1>
-    <p class="lead">Dozens of reusable components built to provide navigation, alerts, popovers, and more.</p>
+    <h1>What is Masonry?</h1>
+    <p class="lead">
+Masonry is a JavaScript grid layout library. It works by placing elements in optimal position based on available vertical space, sort of like a mason fitting stones in a wall. You’ve probably seen it in use all over the Internet. <a href="http://masonry.desandro.com/">http://masonry.desandro.com/</a> <br>
+
+And this is an AngularJS directive for Masonry [<a href="https://github.com/passy/angular-masonry">original github project</a>] </p>
 </header>
       <div class="container-fluid">
         <div class="row-fluid">
@@ -50,8 +53,8 @@
                 <div infinite-scroll='bricks.nextPage()' infinite-scroll-disabled='bricks.busy' infinite-scroll-distance='1'>
                   <div masonry options="{ 'columnWidth': 400,'gutter': 5}">
                       <div class="masonry-brick"  ng-repeat="brick in bricks.items">
-                          <img ng-src="{{ brick }}" alt="A masonry brick">
-                          <h1 style="font-size: 15px;">Lorem Ipsum event on facebook</h1>
+                          <img ng-src="{{ brick.src }}" alt="A masonry brick">
+                          <h1 style="font-size: 15px;">{{ brick.title }}</h1>
                           <p>Aug 23, 2013</p>
                           <p>Burnaby, BC</p>
                       </div>
@@ -73,18 +76,17 @@
 
 
         
-        <script src="http://passy.github.io/angular-masonry/bower_components/jquery/jquery.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/jquery-bridget/jquery.bridget.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/get-style-property/get-style-property.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/get-size/get-size.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/eventEmitter/EventEmitter.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/eventie/eventie.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/doc-ready/doc-ready.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/matches-selector/matches-selector.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/item.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/outlayer.js"></script>
-        <script src="http://passy.github.io/angular-masonry/bower_components/masonry/masonry.js"></script>
-        
+	<script src="http://passy.github.io/angular-masonry/bower_components/jquery/jquery.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/jquery-bridget/jquery.bridget.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/get-style-property/get-style-property.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/get-size/get-size.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/eventEmitter/EventEmitter.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/eventie/eventie.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/doc-ready/doc-ready.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/matches-selector/matches-selector.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/item.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/outlayer/outlayer.js"></script>
+	        <script src="http://passy.github.io/angular-masonry/bower_components/masonry/masonry.js"></script>
 
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         <script src="angular-masonry.js"></script>
@@ -108,24 +110,28 @@
                             1
                         )
                     };
+                    console.log($scope.bricks);
                 })
                 .factory('Reddit', function($http) {
                   var Reddit = function() {
                     this.items = [
-                
-                    'http://lorempixel.com/350/200/sports/1',
-                    'http://lorempixel.com/350/200/sports/2',
-                    'http://lorempixel.com/350/200/sports/3/',
-                    'http://lorempixel.com/320/200/sports/7/',
-                    'http://lorempixel.com/460/350/food/2/',
-                    'http://lorempixel.com/320/400/food/2/',
-                    'http://lorempixel.com/320/200/food/4/',
+                  
+                    {'src':'http://lorempixel.com/350/200/sports/1', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/350/200/sports/2', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/350/200/sports/3/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/320/200/sports/7/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/460/350/food/2/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/320/400/food/2/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/320/200/food/4/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/450/400/food/2/', 'title':'Lorem Ipsum and shit'},
+                    {'src':'http://lorempixel.com/500/350/sports/5/', 'title':'Lorem Ipsum and shit'},
 
                     ];
                     this.busy = false;
+                    
                     this.after = '';
                   };
-                  var ii=0;
+
                   Reddit.prototype.nextPage = function() {
                     if (this.busy) return;
                     function getRandomInt(min, max) {
@@ -135,20 +141,20 @@
                     
                     var url = "http://api.reddit.com/hot?after=" + this.after + "&jsonp=JSON_CALLBACK";
                     $http.jsonp(url).success(function(data) {
+                      
                       // console.log("page " + ii);
                          
-                      var width=300;
-                       //var items = data.data.children;
-                      for (var i = 0; i < 10; i++) {
+                       //var width=300;
+                       var items = data.data.children;
+                       
+                       for (var i = 0; i < items.length - 20; i++) {
 
-                        //this.items.push(items[i].data);
-                        this.items.push('http://lorempixel.com/320/'+ getRandomInt(20,50) +'0/?5142');
-                      }
-                      //this.after = "t3_" + this.items[this.items.length - 1].id;
+                         this.items.push({'src':'http://lorempixel.com/320/'+ getRandomInt(20,50) +'0/?5142','title':'"' + items[i].data.title +'"'});
+                       };
+    
+
                       this.busy = false;
-                      //this.items.push('http://lorempixel.com/g/300/300/?5142');
-                      console.log("page "+ii);
-                      ii++;
+
     
                       
 
